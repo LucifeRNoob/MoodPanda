@@ -3,7 +3,6 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import pages.LoginPage;
 import staticdata.WebTimeouts;
 import staticdata.WebUrls;
 

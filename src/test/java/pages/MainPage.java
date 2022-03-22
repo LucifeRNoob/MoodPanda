@@ -13,6 +13,7 @@ public class MainPage {
     private ElementsCollection globalFeedTitle = $$(By.xpath("//p[text()='Global feed']"));
 
     private SelenideElement postUpdateButton = $(By.xpath("//a[contains(.,'Post update')]"));
+    private SelenideElement iAmInCrisisButton = $(By.xpath("//a[@class='button is-danger is-rounded is-outslined is-fullwidth']"));
 
     public int getTitleQuantity() {
         globalFeedTitle.get(1).shouldBe(visible);
@@ -21,5 +22,9 @@ public class MainPage {
 
     public void goToRateYourHappinessPage() {
         postUpdateButton.click();
+    }
+
+    public void goToCrisisPage() {
+        iAmInCrisisButton.click();
     }
 }

@@ -6,23 +6,28 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CrisisCenterPage;
 import pages.LoginPage;
 import pages.MainPage;
 import staticdata.UserCredentials;
+import staticdata.WebUrls;
 
-public class LoginTest extends BaseTest{
+public class CrisisCenterTest extends BaseTest {
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginTest.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(CrisisCenterTest.class.getName());
 
-    @Test(description = "Login in MoodPanda with valid credentials")
-    @Severity(SeverityLevel.CRITICAL)
-    public void loginTest() {
+    @Test(description = "Check that Crisis Center is opened")
+    @Severity(SeverityLevel.MINOR)
+    public void openCrisisCenter() {
         LoginPage loginPage = new LoginPage();
         LOGGER.info("Open login page 'MoodPanda'");
         loginPage.openLoginPage();
         LOGGER.info("Login with email: " + UserCredentials.EMAIL + "and with password: " + UserCredentials.PASSWORD);
         loginPage.login(UserCredentials.EMAIL, UserCredentials.PASSWORD);
         MainPage mainPage = new MainPage();
-        Assert.assertEquals(mainPage.getTitleQuantity(),2,"Quantity of titles isn't expected");
+        LOGGER.info("Try to open Crisis center page" + WebUrls.BASE_URL.concat(WebUrls.CRISIS_CENTER_URL));
+        mainPage.goToCrisisPage();
+        CrisisCenterPage crisisCenterPage = new CrisisCenterPage();
+        Assert.assertEquals(crisisCenterPage.crisisTitleIsExisted(), "Crisis center", "Crisis center page is not opened");
     }
 }
